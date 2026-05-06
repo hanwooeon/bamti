@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="배워볼LANG - 어린이 외국어 교육부터 성인 시험 대비까지. 온라인 제2외국어 교육 플랫폼" />
+  <meta name="keywords" content="외국어 교육, 어린이 영어, 성인 외국어, 제2외국어, 어학 시험, JPT, HSK, DELF" />
+  <title>배워볼LANG - 언어의 나무를 키워가다</title>
+  <link rel="stylesheet" href="assets/css/common.css" />
+  <link rel="stylesheet" href="assets/css/index.css" />
+</head>
+<body>
+
+<!-- ==============================
+     내비게이션
+     ============================== -->
+<nav class="navbar" id="mainNav" role="navigation" aria-label="주 내비게이션">
+  <div class="container navbar__inner">
+    <a href="index.html" class="navbar__logo" aria-label="배워볼LANG 홈">
+      <span class="navbar__logo-icon" aria-hidden="true">🌳</span>
+      배워볼LANG
+    </a>
+
+    <button class="navbar__hamburger" id="hamburger" aria-label="메뉴 열기" aria-expanded="false" aria-controls="navMenu">
+      <span></span><span></span><span></span>
+    </button>
+
+    <div class="navbar__menu" id="navMenu">
+      <ul class="navbar__links" role="list">
+        <li><a href="#courses">수업과정</a></li>
+        <li><a href="#languages">언어별 과정</a></li>
+        <li><a href="#features">서비스 특징</a></li>
+        <li><a href="pages/contact.html">문의</a></li>
+      </ul>
+      <div class="navbar__actions">
+        <div id="navGuest" style="display:flex; align-items:center; gap:0.75rem;">
+          <a href="pages/login.html" class="btn btn-outline" aria-label="로그인">로그인</a>
+          <a href="pages/register.html" class="btn btn-primary" aria-label="회원가입">회원가입</a>
+        </div>
+        <div id="navMember" style="display:none; align-items:center; gap:0.75rem;">
+          <span id="navUsername" style="font-size:0.875rem; font-weight:600; color:var(--color-text-dark);"></span>
+          <button id="navLogoutBtn" class="btn btn-outline btn-sm">로그아웃</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<main class="page-wrapper">
+
+  <!-- ==============================
+       히어로 섹션
+       ============================== -->
+  <section class="hero" aria-labelledby="heroTitle">
+    <div class="container">
+      <div class="hero__inner">
+
+        <div class="hero__content">
+          <span class="hero__badge" aria-label="새로운 서비스">
+            🌱 NEW 2024년 서비스 오픈
+          </span>
+          <h1 class="hero__title" id="heroTitle">
+            언어의 나무를<br>
+            <span class="accent">함께 키워가요</span>
+          </h1>
+          <p class="hero__desc">
+            어린이 외국어 교육부터 성인 시험 대비까지,<br>
+            배워볼LANG 하나로 해결하세요.<br>
+            영어·중국어·일본어·프랑스어 전문 온라인 플랫폼
+          </p>
+          <div class="hero__actions">
+            <a href="pages/register.html" class="btn btn-primary btn-lg">
+              무료로 시작하기 →
+            </a>
+            <a href="#courses" class="btn btn-outline btn-lg">
+              과정 둘러보기
+            </a>
+          </div>
+        </div>
+
+        <div class="hero__visual" aria-hidden="true">
+          <div class="hero__card-container">
+            <div class="hero__stat-card featured">
+              <div class="hero__emoji">🌏</div>
+              <div class="hero__stat-number">4개</div>
+              <div class="hero__stat-label">제공 언어</div>
+            </div>
+            <div class="hero__stat-card">
+              <div class="hero__emoji">👧</div>
+              <div class="hero__stat-number">6~13세</div>
+              <div class="hero__stat-label">어린이 과정</div>
+            </div>
+            <div class="hero__stat-card">
+              <div class="hero__emoji">🎓</div>
+              <div class="hero__stat-number">14세+</div>
+              <div class="hero__stat-label">성인·시험 과정</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ==============================
+       통계 배너
+       ============================== -->
+  <section class="stats-banner" aria-label="서비스 현황">
+    <div class="container">
+      <div class="stats-banner__grid">
+        <div class="stats-banner__item">
+          <div class="stats-banner__number">12,000+</div>
+          <div class="stats-banner__label">누적 수강생</div>
+        </div>
+        <div class="stats-banner__item">
+          <div class="stats-banner__number">98%</div>
+          <div class="stats-banner__label">수강생 만족도</div>
+        </div>
+        <div class="stats-banner__item">
+          <div class="stats-banner__number">50+</div>
+          <div class="stats-banner__label">전문 강사진</div>
+        </div>
+        <div class="stats-banner__item">
+          <div class="stats-banner__number">4개국어</div>
+          <div class="stats-banner__label">영·중·일·불</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==============================
+       수업 과정 섹션
+       ============================== -->
+  <section class="section" id="courses" aria-labelledby="coursesTitle">
+    <div class="container courses-section-wrapper">
+      <div class="section__header">
+        <span class="section__tag">COURSES</span>
+        <h2 class="section__title" id="coursesTitle">
+          어린이부터 성인까지,<br><span class="accent">모든 연령을 위한 과정</span>
+        </h2>
+        <p class="section__desc">
+          연령과 수준에 맞는 맞춤형 커리큘럼으로<br>
+          효과적인 언어 학습을 경험하세요.
+        </p>
+      </div>
+      <div class="section__header-image">
+        <img src="assets/images/bamti.png" alt="배워볼LANG 마스코트" class="bamti-image">
+      </div>
+    </div>
+
+      <!-- 탭 필터 -->
+      <div class="target-tabs-wrapper">
+        <div class="target-tabs" role="tablist" aria-label="수강 대상 선택">
+          <button class="target-tab active" role="tab" aria-selected="true" aria-controls="tab-all" id="tab-all-btn" data-filter="all">
+            전체 보기
+          </button>
+          <button class="target-tab" role="tab" aria-selected="false" aria-controls="tab-kids" id="tab-kids-btn" data-filter="kids">
+            👧 어린이 (3~13세)
+          </button>
+          <button class="target-tab" role="tab" aria-selected="false" aria-controls="tab-adult" id="tab-adult-btn" data-filter="adult">
+            🎓 성인·청소년 (14세+)
+          </button>
+        </div>
+      </div>
+
+      <div class="courses-grid" id="coursesGrid">
+
+        <!-- 어린이 과정 -->
+        <article class="course-card" data-target="kids">
+          <div class="course-card__thumb kids" aria-hidden="true">🐣</div>
+          <div class="course-card__body">
+            <span class="course-card__age-badge kids">어린이</span>
+            <h3 class="course-card__title">우리 아이 첫 영어</h3>
+            <p class="course-card__desc">
+              놀이와 노래로 배우는 영어 입문 과정. 알파벳부터 기초 회화까지 재미있게 시작해요.
+            </p>
+            <div class="course-card__meta">
+              <span class="course-card__level">🎯 입문~초급 | 3~7세</span>
+              <span class="course-card__price">월 39,000원~</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="course-card" data-target="kids">
+          <div class="course-card__thumb chinese" aria-hidden="true">🐉</div>
+          <div class="course-card__body">
+            <span class="course-card__age-badge kids">어린이</span>
+            <h3 class="course-card__title">즐거운 중국어 탐험</h3>
+            <p class="course-card__desc">
+              이야기와 게임으로 배우는 어린이 중국어. 성조부터 기초 회화까지 단계별로 배워요.
+            </p>
+            <div class="course-card__meta">
+              <span class="course-card__level">🎯 입문~초급 | 5~12세</span>
+              <span class="course-card__price">월 42,000원~</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="course-card" data-target="kids">
+          <div class="course-card__thumb japanese" aria-hidden="true">🌸</div>
+          <div class="course-card__body">
+            <span class="course-card__age-badge kids">어린이</span>
+            <h3 class="course-card__title">히라가나와 친구들</h3>
+            <p class="course-card__desc">
+              캐릭터와 함께 배우는 어린이 일본어. 히라가나·가타카나부터 기초 문장까지 도전해요.
+            </p>
+            <div class="course-card__meta">
+              <span class="course-card__level">🎯 입문~초급 | 7~13세</span>
+              <span class="course-card__price">월 42,000원~</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- 성인 과정 -->
+        <article class="course-card" data-target="adult">
+          <div class="course-card__thumb english" aria-hidden="true">📝</div>
+          <div class="course-card__body">
+            <span class="course-card__age-badge adult">성인·시험</span>
+            <h3 class="course-card__title">토익·영어회화 집중반</h3>
+            <p class="course-card__desc">
+              실전 토익 목표 점수 달성과 비즈니스 영어 회화를 동시에 준비하는 집중 과정.
+            </p>
+            <div class="course-card__meta">
+              <span class="course-card__level">🎯 초급~고급 | 14세+</span>
+              <span class="course-card__price">월 55,000원~</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="course-card" data-target="adult">
+          <div class="course-card__thumb exam" aria-hidden="true">🎌</div>
+          <div class="course-card__body">
+            <span class="course-card__age-badge adult">성인·시험</span>
+            <h3 class="course-card__title">JPT·JLPT 시험 대비</h3>
+            <p class="course-card__desc">
+              일본어능력시험(JLPT) N5~N1 및 JPT 고득점을 목표로 하는 체계적인 시험 대비 과정.
+            </p>
+            <div class="course-card__meta">
+              <span class="course-card__level">🎯 초급~고급 | 14세+</span>
+              <span class="course-card__price">월 58,000원~</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="course-card" data-target="adult">
+          <div class="course-card__thumb french" aria-hidden="true">🗼</div>
+          <div class="course-card__body">
+            <span class="course-card__age-badge adult">성인·시험</span>
+            <h3 class="course-card__title">DELF·프랑스어 회화</h3>
+            <p class="course-card__desc">
+              DELF A1~B2 시험 대비와 프랑스어 실용 회화를 위한 전문 과정.
+            </p>
+            <div class="course-card__meta">
+              <span class="course-card__level">🎯 입문~중급 | 14세+</span>
+              <span class="course-card__price">월 52,000원~</span>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ==============================
+       언어별 과정
+       ============================== -->
+  <section class="section section-alt" id="languages" aria-labelledby="languagesTitle">
+    <div class="container">
+      <div class="section__header">
+        <span class="section__tag">LANGUAGES</span>
+        <h2 class="section__title" id="languagesTitle">
+          <span class="accent">4개 언어</span> 전문 과정
+        </h2>
+        <p class="section__desc">
+          영어, 중국어, 일본어, 프랑스어<br>
+          각 언어 전문 강사진이 함께합니다.
+        </p>
+      </div>
+
+      <div class="languages-grid" role="list">
+        <div class="language-item" role="listitem">
+          <span class="language-item__flag" aria-hidden="true">🇺🇸</span>
+          <span class="language-item__name">영어</span>
+        </div>
+        <div class="language-item" role="listitem">
+          <span class="language-item__flag" aria-hidden="true">🇨🇳</span>
+          <span class="language-item__name">중국어</span>
+        </div>
+        <div class="language-item" role="listitem">
+          <span class="language-item__flag" aria-hidden="true">🇯🇵</span>
+          <span class="language-item__name">일본어</span>
+        </div>
+        <div class="language-item" role="listitem">
+          <span class="language-item__flag" aria-hidden="true">🇫🇷</span>
+          <span class="language-item__name">프랑스어</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==============================
+       서비스 특징
+       ============================== -->
+  <section class="section" id="features" aria-labelledby="featuresTitle">
+    <div class="container">
+      <div class="section__header">
+        <span class="section__tag">WHY BAEWOBOLLANG</span>
+        <h2 class="section__title" id="featuresTitle">
+          배워볼LANG를 선택하는<br><span class="accent">4가지 이유</span>
+        </h2>
+      </div>
+
+      <div class="features-grid">
+        <div class="feature-item">
+          <div class="feature-item__icon" aria-hidden="true">👨‍🏫</div>
+          <div>
+            <h3 class="feature-item__title">전문 원어민 강사</h3>
+            <p class="feature-item__desc">
+              각 언어별 원어민 전문 강사가 직접 수업을 진행합니다.
+              자연스러운 발음과 실용적인 표현을 배울 수 있어요.
+            </p>
+          </div>
+        </div>
+        <div class="feature-item">
+          <div class="feature-item__icon" aria-hidden="true">📱</div>
+          <div>
+            <h3 class="feature-item__title">언제 어디서나 수업</h3>
+            <p class="feature-item__desc">
+              PC·태블릿·스마트폰 어디서든 접속 가능합니다.
+              집에서 편안하게 수업을 받아보세요.
+            </p>
+          </div>
+        </div>
+        <div class="feature-item">
+          <div class="feature-item__icon" aria-hidden="true">📊</div>
+          <div>
+            <h3 class="feature-item__title">체계적인 학습 관리</h3>
+            <p class="feature-item__desc">
+              학습 현황·출석·진도를 대시보드로 한눈에 확인하세요.
+              학부모님도 자녀의 학습을 손쉽게 모니터링할 수 있습니다.
+            </p>
+          </div>
+        </div>
+        <div class="feature-item">
+          <div class="feature-item__icon" aria-hidden="true">🏆</div>
+          <div>
+            <h3 class="feature-item__title">시험 합격 보장 프로그램</h3>
+            <p class="feature-item__desc">
+              JLPT·JPT·HSK·DELF 등 공인 어학 시험 합격을 위한
+              맞춤형 커리큘럼과 모의고사를 제공합니다.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==============================
+       CTA 섹션
+       ============================== -->
+  <section class="cta-section" aria-labelledby="ctaTitle">
+    <div class="container">
+      <h2 class="cta-section__title" id="ctaTitle">
+        지금 바로 시작해보세요!<br>첫 1개월 무료 체험
+      </h2>
+      <p class="cta-section__desc">
+        신용카드 없이 무료로 시작할 수 있어요.<br>
+        원하는 언어 과정을 자유롭게 체험해보세요.
+      </p>
+      <a href="pages/register.html" class="btn btn-white" aria-label="무료 회원가입 페이지로 이동">
+        무료 회원가입 →
+      </a>
+    </div>
+  </section>
+
+</main>
+
+<!-- ==============================
+     푸터
+     ============================== -->
+<footer class="footer" role="contentinfo">
+  <div class="container">
+    <div class="footer__grid">
+      <div>
+        <div class="footer__brand-name">🌳 배워볼LANG</div>
+        <p class="footer__brand-desc">
+          어린이 외국어 교육부터 성인 시험 대비까지,<br>
+          모든 언어 학습의 시작점, 배워볼LANG입니다.
+        </p>
+        <p style="font-size:0.75rem; color:rgba(255,255,255,0.4);">
+          사업자등록번호: 123-45-67890<br>
+          통신판매업신고: 제2024-서울강남-00001호<br>
+          대표이사: 홍길동 | 개인정보보호책임자: 김정보
+        </p>
+      </div>
+      <div>
+        <div class="footer__col-title">서비스</div>
+        <ul class="footer__col-links">
+          <li><a href="#courses">어린이 과정</a></li>
+          <li><a href="#courses">성인·시험 과정</a></li>
+          <li><a href="#languages">언어별 과정</a></li>
+          <li><a href="#features">서비스 특징</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer__col-title">회사</div>
+        <ul class="footer__col-links">
+          <li><a href="#">회사 소개</a></li>
+          <li><a href="#">강사 소개</a></li>
+          <li><a href="#">채용</a></li>
+          <li><a href="#">공지사항</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer__col-title">고객지원</div>
+        <ul class="footer__col-links">
+          <li><a href="#">자주 묻는 질문</a></li>
+          <li><a href="#">1:1 문의</a></li>
+          <li><a href="pages/privacy-policy.html">개인정보처리방침</a></li>
+          <li><a href="pages/terms.html">이용약관</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer__bottom">
+      <p class="footer__bottom-text">
+        © 2020 배워볼LANG. All rights reserved.<br>
+        주소: 서울특별시 강남구 강남대로 111 | 대표전화: 1588-1313 | 이메일: nanunbamti@baewobollang.com
+      </p>
+      <div class="footer__bottom-links">
+        <a href="pages/terms.html">이용약관</a>
+        <a href="pages/privacy-policy.html"><strong>개인정보처리방침</strong></a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/js/common.js"></script>
+<script src="assets/js/index.js"></script>
+</body>
+</html>
