@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CS 관리 - 배워볼LANG 관리자</title>
+  <link rel="stylesheet" href="assets/css/admin.css" />
+</head>
+<body>
+<div class="admin-layout">
+
+  <!-- 사이드바 -->
+  <aside class="sidebar">
+    <div class="sidebar__logo">
+      <span class="sidebar__logo-icon">🌳</span>
+      <div>
+        <div class="sidebar__logo-text">배워볼LANG</div>
+        <div class="sidebar__logo-sub">Admin Panel</div>
+      </div>
+    </div>
+    <nav class="sidebar__nav">
+      <div class="sidebar__section">메뉴</div>
+      <a href="dashboard.html" class="sidebar__item">
+        <span class="sidebar__item-icon">📊</span> 대시보드
+      </a>
+      <a href="members.html" class="sidebar__item">
+        <span class="sidebar__item-icon">👥</span> 회원 관리
+      </a>
+      <a href="cs.html" class="sidebar__item active">
+        <span class="sidebar__item-icon">💬</span> CS 관리
+      </a>
+    </nav>
+    <div class="sidebar__footer">
+      <strong id="sidebarAdminName">관리자</strong>
+      <span id="sidebarAdminRole">admin</span>
+    </div>
+  </aside>
+
+  <!-- 메인 -->
+  <div class="main-content">
+    <header class="admin-header">
+      <div class="admin-header__title">CS 문의 관리</div>
+      <div class="admin-header__right">
+        <span id="headerAdminName" style="font-size:13px;color:#4a5568;"></span>
+        <button class="btn-logout" id="logoutBtn">로그아웃</button>
+      </div>
+    </header>
+
+    <div class="page-content">
+      <div class="card">
+        <div class="card__header">
+          <div class="card__title">문의 목록 (<span id="totalCount">0</span>건)</div>
+          <div class="filter-bar">
+            <input class="filter-input" id="searchInput" placeholder=" " />
+            <select class="filter-select" id="statusFilter">
+              <option value="">전체 상태</option>
+              <option value="pending">대기 중</option>
+              <option value="in_progress">처리 중</option>
+              <option value="resolved">해결 완료</option>
+              <option value="closed">종료</option>
+            </select>
+            <select class="filter-select" id="categoryFilter">
+              <option value="">전체 카테고리</option>
+              <option value="수강문의">수강문의</option>
+              <option value="결제/환불">결제/환불</option>
+              <option value="계정">계정</option>
+              <option value="기술지원">기술지원</option>
+              <option value="기타">기타</option>
+            </select>
+            <button class="btn btn-primary" id="searchBtn">검색</button>
+          </div>
+        </div>
+        <div class="card__body">
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>카테고리</th>
+                  <th>제목</th>
+                  <th>이름</th>
+                  <th>상태</th>
+                  <th>접수일</th>
+                  <th>관리</th>
+                </tr>
+              </thead>
+              <tbody id="csTableBody">
+                <tr><td colspan="9" class="loading">데이터를 불러오는 중...</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="pagination" id="pagination"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CS 상세/답변 모달 -->
+<div class="modal-overlay" id="csModal">
+  <div class="modal" style="max-width:700px;">
+    <div class="modal__header">
+      <div>
+        <div class="modal__title" id="csModalTitle">문의 상세</div>
+      </div>
+      <button class="modal__close" id="modalClose">✕</button>
+    </div>
+    <div class="modal__body">
+      <!-- 문의 내용 -->
+      <div class="detail-grid" id="csDetail"></div>
+
+      <!-- 관리자 답변 -->
+      <div style="margin-top:20px;">
+        <div style="font-size:13px;font-weight:700;margin-bottom:8px;">관리자 답변</div>
+        <div class="reply-box" id="existingReply" style="display:none;margin-bottom:10px;"></div>
+        <textarea class="reply-textarea" id="replyTextarea" placeholder="답변을 입력하세요..."></textarea>
+      </div>
+    </div>
+    <div class="modal__footer">
+      <div style="display:flex;gap:8px;align-items:center;margin-right:auto;">
+        <label style="font-size:12px;font-weight:600;">상태:</label>
+        <select class="status-select" id="csStatusSelect">
+          <option value="pending">대기 중</option>
+          <option value="in_progress">처리 중</option>
+          <option value="resolved">해결 완료</option>
+          <option value="closed">종료</option>
+        </select>
+      </div>
+      <button class="btn btn-primary" id="csSaveBtn">저장</button>
+      <button class="btn btn-outline" id="modalCancelBtn">닫기</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast-container" id="toastContainer"></div>
+
+<script src="assets/js/admin-common.js"></script>
+<script src="assets/js/cs.js"></script>
+</body>
+</html>

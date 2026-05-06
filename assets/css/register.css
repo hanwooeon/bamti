@@ -1,0 +1,668 @@
+/* ===================================================
+  배워볼LANG - 회원가입 페이지 스타일
+   ISMS-P 개인정보 수집 동의 UI 포함
+   =================================================== */
+
+/* ── 회원가입 레이아웃 ── */
+.register-page {
+  min-height: 100vh;
+  background: var(--color-primary-bg);
+  padding-top: var(--nav-height);
+  display: flex;
+  flex-direction: column;
+}
+
+.register-body {
+  flex: 1;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: var(--spacing-2xl) var(--spacing-md);
+}
+
+.register-card {
+  background: var(--color-white);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-lg);
+  width: 100%;
+  max-width: 680px;
+  overflow: hidden;
+}
+
+/* ── 카드 헤더 ── */
+.register-card__header {
+  background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark));
+  padding: var(--spacing-2xl);
+  text-align: center;
+  color: white;
+}
+
+.register-card__logo {
+  font-size: var(--font-size-xl);
+  font-weight: 800;
+  margin-bottom: var(--spacing-sm);
+}
+
+.register-card__title {
+  font-size: var(--font-size-2xl);
+  font-weight: 800;
+  margin-bottom: var(--spacing-sm);
+}
+
+.register-card__subtitle {
+  font-size: var(--font-size-sm);
+  color: rgba(255,255,255,0.85);
+}
+
+/* ── 단계 표시기 (Stepper) ── */
+.stepper {
+  padding: var(--spacing-xl) var(--spacing-2xl);
+  border-bottom: 1px solid var(--color-border);
+  background: var(--color-bg-section);
+}
+
+.stepper__list {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+}
+
+.stepper__list::before {
+  content: '';
+  position: absolute;
+  top: 16px;
+  left: 10%;
+  right: 10%;
+  height: 2px;
+  background: var(--color-border);
+  z-index: 0;
+}
+
+.stepper__item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-sm);
+  position: relative;
+  z-index: 1;
+  flex: 1;
+}
+
+.stepper__circle {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 2px solid var(--color-border);
+  background: var(--color-white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--font-size-sm);
+  font-weight: 700;
+  color: var(--color-text-light);
+  transition: all var(--transition-fast);
+}
+
+.stepper__item.active .stepper__circle {
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+  color: white;
+}
+
+.stepper__item.done .stepper__circle {
+  background: var(--color-success);
+  border-color: var(--color-success);
+  color: white;
+}
+
+.stepper__label {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-light);
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.stepper__item.active .stepper__label {
+  color: var(--color-primary);
+  font-weight: 700;
+}
+
+.stepper__item.done .stepper__label {
+  color: var(--color-success);
+}
+
+/* ── 폼 바디 ── */
+.register-form-body {
+  padding: var(--spacing-2xl);
+}
+
+/* ── 스텝 패널 ── */
+.step-panel {
+  display: none;
+}
+
+.step-panel.active {
+  display: block;
+}
+
+/* ── 회원 유형 선택 ── */
+.member-type-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--spacing-lg);
+  margin-bottom: var(--spacing-xl);
+}
+
+.member-type-card {
+  border: 2.5px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  padding: var(--spacing-xl);
+  text-align: center;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  position: relative;
+}
+
+.member-type-card:hover {
+  border-color: var(--color-primary-light);
+  background: var(--color-primary-pale);
+}
+
+.member-type-card.selected {
+  border-color: var(--color-primary);
+  background: var(--color-primary-pale);
+}
+
+.member-type-card.selected::after {
+  content: '✓';
+  position: absolute;
+  top: 10px;
+  right: 14px;
+  color: var(--color-primary);
+  font-weight: 900;
+  font-size: var(--font-size-lg);
+}
+
+.member-type-card input[type="radio"] {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.member-type-card__icon { font-size: 3rem; margin-bottom: var(--spacing-md); }
+.member-type-card__title {
+  font-size: var(--font-size-lg);
+  font-weight: 700;
+  color: var(--color-text-dark);
+  margin-bottom: var(--spacing-sm);
+}
+
+.member-type-card__desc {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-medium);
+  line-height: 1.5;
+}
+
+/* ── 입력 폼 섹션 타이틀 ── */
+.form-section-title {
+  font-size: var(--font-size-sm);
+  font-weight: 700;
+  color: var(--color-text-dark);
+  margin-bottom: var(--spacing-lg);
+  padding-bottom: var(--spacing-sm);
+  border-bottom: 2px solid var(--color-primary-pale);
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+}
+
+.form-section-title::before {
+  content: '';
+  width: 4px;
+  height: 1em;
+  background: var(--color-primary);
+  border-radius: 2px;
+}
+
+/* ── 두 열 레이아웃 ── */
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--spacing-md);
+}
+
+/* ── 비밀번호 강도 ── */
+.password-strength {
+  margin-top: var(--spacing-sm);
+  display: none;
+}
+
+.password-strength.visible { display: block; }
+
+.password-strength__bar {
+  height: 4px;
+  border-radius: 2px;
+  background: var(--color-border);
+  overflow: hidden;
+  margin-bottom: 4px;
+}
+
+.password-strength__fill {
+  height: 100%;
+  border-radius: 2px;
+  transition: all var(--transition-normal);
+  width: 0%;
+}
+
+.password-strength__fill.weak   { width: 33%; background: var(--color-error); }
+.password-strength__fill.medium { width: 66%; background: var(--color-warning); }
+.password-strength__fill.strong { width: 100%; background: var(--color-success); }
+
+.password-strength__text {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-light);
+}
+
+/* ── 만 14세 미만 알림 박스 ── */
+.minor-notice {
+  display: none;
+  background: #FFFBEB;
+  border: 1.5px solid #FCD34D;
+  border-radius: var(--radius-md);
+  padding: var(--spacing-lg);
+  margin-bottom: var(--spacing-lg);
+}
+
+.minor-notice.visible { display: block; }
+
+.minor-notice__title {
+  font-size: var(--font-size-sm);
+  font-weight: 700;
+  color: #92400E;
+  margin-bottom: var(--spacing-sm);
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+}
+
+.minor-notice__text {
+  font-size: var(--font-size-xs);
+  color: #92400E;
+  line-height: 1.6;
+}
+
+/* ── 법정대리인 섹션 ── */
+.guardian-section {
+  display: none;
+  background: #F0FDF4;
+  border: 1.5px solid #86EFAC;
+  border-radius: var(--radius-md);
+  padding: var(--spacing-lg);
+  margin-bottom: var(--spacing-lg);
+}
+
+.guardian-section.visible { display: block; }
+
+.guardian-section__title {
+  font-size: var(--font-size-sm);
+  font-weight: 700;
+  color: #166534;
+  margin-bottom: var(--spacing-lg);
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+}
+
+/* ─────────────────────────────────────────────────
+   ISMS-P 핵심: 개인정보 수집·이용 동의 영역
+   개인정보보호법 및 ISMS-P 2.3 기준 준수
+   ───────────────────────────────────────────────── */
+.consent-section {
+  margin-bottom: var(--spacing-xl);
+}
+
+/* 전체 동의 */
+.consent-all-wrapper {
+  background: linear-gradient(135deg, var(--color-primary-pale), #FFF8F5);
+  border: 2px solid var(--color-primary-light);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-lg) var(--spacing-xl);
+  margin-bottom: var(--spacing-lg);
+}
+
+.consent-all-label {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  cursor: pointer;
+}
+
+.consent-all-label .consent-text {
+  font-size: var(--font-size-base);
+  font-weight: 700;
+  color: var(--color-text-dark);
+}
+
+.consent-all-desc {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-medium);
+  margin-top: 0.3rem;
+  padding-left: calc(1.25rem + var(--spacing-md));
+}
+
+/* 동의 그룹 */
+.consent-group {
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  margin-bottom: var(--spacing-md);
+}
+
+.consent-group-header {
+  background: var(--color-bg-section);
+  padding: var(--spacing-sm) var(--spacing-lg);
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+}
+
+.consent-group-header .group-label {
+  font-size: var(--font-size-xs);
+  font-weight: 700;
+  color: var(--color-text-medium);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* 개별 동의 항목 */
+.consent-item {
+  border-top: 1px solid var(--color-border);
+  padding: var(--spacing-lg);
+  background: var(--color-white);
+}
+
+.consent-item:first-of-type {
+  border-top: none;
+}
+
+.consent-item__top {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-md);
+}
+
+.consent-item__checkbox-wrap {
+  flex-shrink: 0;
+  padding-top: 2px;
+}
+
+.consent-item__body {
+  flex: 1;
+}
+
+.consent-item__label {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  color: var(--color-text-dark);
+  cursor: pointer;
+  margin-bottom: var(--spacing-sm);
+  flex-wrap: wrap;
+}
+
+.consent-item__toggle {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-light);
+  text-decoration: underline;
+  cursor: pointer;
+  margin-left: auto;
+  white-space: nowrap;
+  background: none;
+  border: none;
+  font-family: inherit;
+}
+
+.consent-item__toggle:hover {
+  color: var(--color-primary);
+}
+
+/* 상세 내용 박스 (접고 펼치기) */
+.consent-item__detail {
+  display: none;
+  background: var(--color-consent-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  margin-top: var(--spacing-sm);
+  overflow: hidden;
+}
+
+.consent-item__detail.open {
+  display: block;
+}
+
+.consent-detail-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--font-size-xs);
+}
+
+.consent-detail-table th {
+  background: #F1F3F9;
+  padding: 0.5rem 0.75rem;
+  text-align: left;
+  color: var(--color-text-medium);
+  font-weight: 600;
+  white-space: nowrap;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.consent-detail-table td {
+  padding: 0.5rem 0.75rem;
+  color: var(--color-text-dark);
+  border-bottom: 1px solid var(--color-border);
+  line-height: 1.5;
+}
+
+.consent-detail-table tr:last-child td {
+  border-bottom: none;
+}
+
+/* 거부 시 불이익 안내 */
+.consent-item__refuse-notice {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-light);
+  padding: 0.5rem 0.75rem;
+  background: #FFFBEB;
+  border-top: 1px solid #FEF3C7;
+}
+
+.consent-item__refuse-notice strong {
+  color: #92400E;
+}
+
+/* 체크박스 커스텀 스타일 */
+.custom-checkbox {
+  position: relative;
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}
+
+.custom-checkbox input[type="checkbox"] {
+  position: absolute;
+  opacity: 0;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+  z-index: 1;
+  margin: 0;
+}
+
+.custom-checkbox__visual {
+  position: absolute;
+  inset: 0;
+  border: 2px solid var(--color-border-dark);
+  border-radius: 5px;
+  background: var(--color-white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--transition-fast);
+}
+
+.custom-checkbox input[type="checkbox"]:checked ~ .custom-checkbox__visual {
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+}
+
+.custom-checkbox__visual::after {
+  content: '';
+  width: 5px;
+  height: 9px;
+  border: 2px solid white;
+  border-top: none;
+  border-left: none;
+  transform: rotate(45deg) translate(-1px, -2px);
+  opacity: 0;
+  transition: opacity var(--transition-fast);
+}
+
+.custom-checkbox input[type="checkbox"]:checked ~ .custom-checkbox__visual::after {
+  opacity: 1;
+}
+
+.custom-checkbox input[type="checkbox"]:focus ~ .custom-checkbox__visual {
+  outline: 3px solid rgba(255,107,43,0.3);
+  outline-offset: 1px;
+}
+
+/* 전체 동의 체크박스 (큰 버전) */
+.custom-checkbox.large {
+  width: 24px;
+  height: 24px;
+}
+
+.custom-checkbox.large .custom-checkbox__visual {
+  border-radius: 6px;
+  border-width: 2.5px;
+}
+
+/* ── 마케팅 동의 구분선 ── */
+.consent-divider {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  margin: var(--spacing-lg) 0;
+  color: var(--color-text-light);
+  font-size: var(--font-size-xs);
+}
+
+.consent-divider::before,
+.consent-divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--color-border);
+}
+
+/* ── 개인정보 항목 태그 ── */
+.info-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem;
+  margin-top: 0.3rem;
+}
+
+.info-tag {
+  display: inline-block;
+  background: #F1F5F9;
+  color: var(--color-text-medium);
+  padding: 0.15rem 0.5rem;
+  border-radius: var(--radius-full);
+  font-size: 0.7rem;
+  border: 1px solid var(--color-border);
+}
+
+/* ── 폼 탐색 버튼 ── */
+.form-nav {
+  display: flex;
+  gap: var(--spacing-md);
+  margin-top: var(--spacing-xl);
+}
+
+.form-nav .btn {
+  flex: 1;
+  padding: 0.875rem;
+  font-size: var(--font-size-base);
+  border-radius: var(--radius-lg);
+}
+
+/* ── 완료 화면 ── */
+.register-done {
+  text-align: center;
+  padding: var(--spacing-3xl) var(--spacing-xl);
+}
+
+.register-done__icon {
+  font-size: 5rem;
+  margin-bottom: var(--spacing-lg);
+}
+
+.register-done__title {
+  font-size: var(--font-size-2xl);
+  font-weight: 800;
+  color: var(--color-text-dark);
+  margin-bottom: var(--spacing-md);
+}
+
+.register-done__desc {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-medium);
+  line-height: 1.7;
+  margin-bottom: var(--spacing-2xl);
+}
+
+/* ── 개인정보 목적 안내 박스 ── */
+.privacy-guide-box {
+  background: var(--color-consent-bg);
+  border: 1.5px solid #BFDBFE;
+  border-radius: var(--radius-md);
+  padding: var(--spacing-lg);
+  margin-bottom: var(--spacing-xl);
+}
+
+.privacy-guide-box__title {
+  font-size: var(--font-size-sm);
+  font-weight: 700;
+  color: #1E40AF;
+  margin-bottom: var(--spacing-sm);
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+}
+
+.privacy-guide-box__list {
+  font-size: var(--font-size-xs);
+  color: #1E40AF;
+  line-height: 1.7;
+  padding-left: var(--spacing-md);
+}
+
+.privacy-guide-box__list li {
+  list-style: disc;
+  margin-bottom: 0.2rem;
+}
+
+/* ── 반응형 ── */
+@media (max-width: 640px) {
+  .register-form-body { padding: var(--spacing-lg); }
+  .stepper { padding: var(--spacing-lg); }
+  .member-type-grid { grid-template-columns: 1fr; }
+  .form-row { grid-template-columns: 1fr; }
+  .consent-all-wrapper { padding: var(--spacing-md); }
+  .register-card__header { padding: var(--spacing-xl) var(--spacing-lg); }
+}

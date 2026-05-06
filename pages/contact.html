@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>1:1 문의 - 배워볼LANG</title>
+  <meta name="description" content="배워볼LANG 1:1 고객 문의" />
+  <link rel="stylesheet" href="../assets/css/common.css" />
+  <style>
+    .contact-page { padding: 60px 0; min-height: 80vh; }
+    .contact-hero { background: linear-gradient(135deg,#1e1e2e,#2d2d44); color:#fff; padding: 56px 0 48px; text-align:center; }
+    .contact-hero__tag { display:inline-block; padding:4px 14px; background:rgba(255,107,43,.2); border:1px solid rgba(255,107,43,.4); border-radius:20px; font-size:12px; font-weight:700; letter-spacing:.06em; color:#FF6B2B; margin-bottom:16px; }
+    .contact-hero__title { font-size:clamp(24px,4vw,36px); font-weight:800; margin-bottom:12px; }
+    .contact-hero__sub { font-size:15px; opacity:.75; }
+    .contact-wrap { max-width: 680px; margin: 0 auto; padding: 48px 20px; }
+    .contact-card { background:#fff; border-radius:16px; box-shadow:0 4px 24px rgba(0,0,0,.08); padding:40px; }
+    .contact-card h2 { font-size:18px; font-weight:700; margin-bottom:8px; }
+    .contact-card p  { font-size:14px; color:#718096; margin-bottom:28px; line-height:1.6; }
+    .form-row { margin-bottom:20px; }
+    .form-row label { display:block; font-size:13px; font-weight:700; color:#4a5568; margin-bottom:6px; }
+    .form-row label .req { color:#EF4444; margin-left:2px; }
+    .form-row input, .form-row select, .form-row textarea {
+      width:100%; padding:11px 14px; border:1.5px solid #e2e8f0; border-radius:8px;
+      font-size:14px; font-family:inherit; outline:none; transition:border .2s;
+    }
+    .form-row input:focus, .form-row select:focus, .form-row textarea:focus { border-color:#FF6B2B; }
+    .form-row textarea { min-height:140px; resize:vertical; }
+    .form-row .error-msg { color:#EF4444; font-size:12px; margin-top:4px; min-height:16px; }
+    .consent-row { display:flex; align-items:flex-start; gap:10px; margin:20px 0; padding:16px; background:#f8fafc; border-radius:8px; font-size:13px; }
+    .consent-row input[type=checkbox] { margin-top:2px; flex-shrink:0; accent-color:#FF6B2B; }
+    .submit-btn {
+      width:100%; padding:14px; background:#FF6B2B; color:#fff; border-radius:8px;
+      font-size:16px; font-weight:700; border:none; cursor:pointer; transition:background .2s;
+    }
+    .submit-btn:hover { background:#e05520; }
+    .submit-btn:disabled { opacity:.6; cursor:not-allowed; }
+    .success-box { text-align:center; padding:40px 0; }
+    .success-box__icon { font-size:56px; margin-bottom:16px; }
+    .success-box__title { font-size:22px; font-weight:800; margin-bottom:8px; }
+    .success-box__ticket { font-size:18px; color:#FF6B2B; font-weight:700; background:rgba(255,107,43,.08); padding:12px 24px; border-radius:8px; display:inline-block; margin:12px 0; }
+    .success-box__sub { font-size:14px; color:#718096; margin-top:8px; }
+    .back-btn { margin-top:24px; display:inline-block; padding:11px 28px; border:1.5px solid #e2e8f0; border-radius:8px; font-size:14px; font-weight:600; color:#4a5568; transition:all .2s; }
+    .back-btn:hover { border-color:#FF6B2B; color:#FF6B2B; }
+  </style>
+</head>
+<body>
+
+<nav class="navbar" id="mainNav" role="navigation" aria-label="주 내비게이션">
+  <div class="container navbar__inner">
+    <a href="../index.html" class="navbar__logo" aria-label="배워볼LANG 홈">
+      <span class="navbar__logo-icon" aria-hidden="true">🌳</span>
+      배워볼LANG
+    </a>
+    <div class="navbar__actions">
+      <a href="../index.html" class="btn btn-outline btn-sm">홈으로</a>
+    </div>
+  </div>
+</nav>
+
+<div class="contact-hero">
+  <div class="container">
+    <span class="contact-hero__tag">1:1 CONTACT</span>
+    <h1 class="contact-hero__title">1:1 문의</h1>
+    <p class="contact-hero__sub">궁금하신 점을 남겨주시면 빠르게 답변드리겠습니다.</p>
+  </div>
+</div>
+
+<div class="contact-wrap">
+  <div class="contact-card">
+
+    <!-- 문의 폼 -->
+    <div id="contactForm">
+      <h2>문의 작성</h2>
+      <p id="contactDesc">답변은 가입하신 이메일로 발송됩니다. 영업일 기준 1~2일 내에 답변드립니다.</p>
+
+      <div class="form-row">
+        <label>문의 카테고리 <span class="req">*</span></label>
+        <select id="csCategory">
+          <option value="">카테고리를 선택해주세요</option>
+          <option value="수강문의">수강문의</option>
+          <option value="결제/환불">결제 / 환불</option>
+          <option value="계정">계정</option>
+          <option value="기술지원">기술지원</option>
+          <option value="기타">기타</option>
+        </select>
+        <div class="error-msg" id="csCategoryErr"></div>
+      </div>
+      <div class="form-row">
+        <label>제목 <span class="req">*</span></label>
+        <input type="text" id="csTitle" placeholder="문의 제목을 입력해주세요" maxlength="200" />
+        <div class="error-msg" id="csTitleErr"></div>
+      </div>
+      <div class="form-row">
+        <label>문의 내용 <span class="req">*</span></label>
+        <textarea id="csContent" placeholder="문의 내용을 자세히 입력해주세요.&#10;&#10;예) 수강 신청 방법, 환불 정책, 계정 비밀번호 초기화 등"></textarea>
+        <div class="error-msg" id="csContentErr"></div>
+      </div>
+
+      <div class="consent-row">
+        <input type="checkbox" id="csConsent" />
+        <label for="csConsent">
+          개인정보 수집·이용에 동의합니다.
+          수집 항목: 이름, 이메일, 전화번호, 문의 내용 / 보유 기간: 문의 처리 완료 후 3년
+          (<a href="privacy-policy.html" target="_blank" style="color:#FF6B2B;">개인정보처리방침</a>)
+        </label>
+      </div>
+      <div class="error-msg" id="csConsentErr"></div>
+
+      <button class="submit-btn" id="csSubmitBtn">문의 접수하기</button>
+      <div class="error-msg" style="text-align:center;margin-top:10px;" id="csFormErr"></div>
+    </div>
+
+    <!-- 접수 완료 -->
+    <div id="contactSuccess" style="display:none;">
+      <div class="success-box">
+        <div class="success-box__icon">✅</div>
+        <div class="success-box__title">문의가 접수되었습니다!</div>
+        <div class="success-box__ticket" id="successTicket"></div>
+        <div class="success-box__sub">
+          티켓 번호를 메모해 두시면 문의 진행 상황 확인 시 활용할 수 있습니다.<br>
+          영업일 기준 1~2일 내에 입력하신 이메일로 답변드리겠습니다.
+        </div>
+        <a href="../index.html" class="back-btn">홈으로 돌아가기</a>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<footer class="footer" role="contentinfo">
+  <div class="container">
+    <div class="footer__bottom" style="border-top:none;padding-top:0;">
+      <p class="footer__bottom-text">
+        © 2025 배워볼LANG. All rights reserved.
+      </p>
+      <div class="footer__bottom-links">
+        <a href="terms.html">이용약관</a>
+        <a href="privacy-policy.html">개인정보처리방침</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="../assets/js/common.js"></script>
+<script>
+  // 로그인 여부 확인 - 미로그인 시 로그인 페이지로 이동
+  if (!localStorage.getItem('memberToken')) {
+    window.location.replace('login.html?returnUrl=contact.html');
+  }
+
+  const API = '/api';
+
+  // 로그인 회원 정보 표시
+  const memberInfo = JSON.parse(localStorage.getItem('memberInfo') || '{}');
+  const descEl = document.getElementById('contactDesc');
+  if (descEl && memberInfo.name) {
+    descEl.textContent = `${memberInfo.name}님(${memberInfo.email})으로 문의가 접수됩니다. 영업일 기준 1~2일 내에 답변드립니다.`;
+  }
+
+  document.getElementById('csSubmitBtn')?.addEventListener('click', async () => {
+    const name     = memberInfo.name  || '';
+    const email    = memberInfo.email || '';
+    const category = document.getElementById('csCategory').value;
+    const title    = document.getElementById('csTitle').value.trim();
+    const content  = document.getElementById('csContent').value.trim();
+    const consent  = document.getElementById('csConsent').checked;
+
+    // 유효성 검사
+    let valid = true;
+    const clear = id => document.getElementById(id).textContent = '';
+    const err   = (id, msg) => { document.getElementById(id).textContent = msg; valid = false; };
+
+    ['csCategoryErr','csTitleErr','csContentErr','csConsentErr','csFormErr'].forEach(clear);
+
+    if (!category) err('csCategoryErr', '카테고리를 선택해주세요.');
+    if (!title)    err('csTitleErr', '제목을 입력해주세요.');
+    if (!content)  err('csContentErr', '문의 내용을 입력해주세요.');
+    if (!consent)  err('csConsentErr', '개인정보 수집·이용에 동의해주세요.');
+
+    if (!valid) return;
+
+    const btn = document.getElementById('csSubmitBtn');
+    btn.disabled = true;
+    btn.textContent = '접수 중...';
+
+    try {
+      const res = await fetch(`${API}/cs`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'ngrok-skip-browser-warning': 'true',
+        },
+        body: JSON.stringify({ name, email, phone: null, category, title, content }),
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || '접수 실패');
+
+      document.getElementById('successTicket').textContent = `티켓번호: ${data.ticketNumber}`;
+      document.getElementById('contactForm').style.display = 'none';
+      document.getElementById('contactSuccess').style.display = 'block';
+    } catch (e) {
+      document.getElementById('csFormErr').textContent = e.message;
+      btn.disabled = false;
+      btn.textContent = '문의 접수하기';
+    }
+  });
+</script>
+</body>
+</html>

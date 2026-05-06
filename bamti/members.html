@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>회원 관리 - 배워볼LANG 관리자</title>
+  <link rel="stylesheet" href="assets/css/admin.css" />
+</head>
+<body>
+<div class="admin-layout">
+
+  <!-- 사이드바 -->
+  <aside class="sidebar">
+    <div class="sidebar__logo">
+      <span class="sidebar__logo-icon">🌳</span>
+      <div>
+        <div class="sidebar__logo-text">배워볼LANG</div>
+        <div class="sidebar__logo-sub">Admin Panel</div>
+      </div>
+    </div>
+    <nav class="sidebar__nav">
+      <div class="sidebar__section">메뉴</div>
+      <a href="dashboard.html" class="sidebar__item">
+        <span class="sidebar__item-icon">📊</span> 대시보드
+      </a>
+      <a href="members.html" class="sidebar__item active">
+        <span class="sidebar__item-icon">👥</span> 회원 관리
+      </a>
+      <a href="cs.html" class="sidebar__item">
+        <span class="sidebar__item-icon">💬</span> CS 관리
+      </a>
+    </nav>
+    <div class="sidebar__footer">
+      <strong id="sidebarAdminName">관리자</strong>
+      <span id="sidebarAdminRole">admin</span>
+    </div>
+  </aside>
+
+  <!-- 메인 -->
+  <div class="main-content">
+    <header class="admin-header">
+      <div class="admin-header__title">회원 관리</div>
+      <div class="admin-header__right">
+        <span id="headerAdminName" style="font-size:13px;color:#4a5568;"></span>
+        <button class="btn-logout" id="logoutBtn">로그아웃</button>
+      </div>
+    </header>
+
+    <div class="page-content">
+      <div class="card">
+        <div class="card__header">
+          <div class="card__title">회원 목록 (<span id="totalCount">0</span>명)</div>
+          <div class="filter-bar">
+            <input class="filter-input" id="searchInput" placeholder="이름 / 이메일 / 전화번호 검색" />
+            <select class="filter-select" id="statusFilter">
+              <option value="">전체 상태</option>
+              <option value="active">활성</option>
+              <option value="suspended">정지</option>
+              <option value="withdrawn">탈퇴</option>
+            </select>
+            <select class="filter-select" id="typeFilter">
+              <option value="">전체 유형</option>
+              <option value="adult">성인</option>
+              <option value="kids">어린이</option>
+            </select>
+            <button class="btn btn-primary" id="searchBtn">검색</button>
+          </div>
+        </div>
+        <div class="card__body">
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>이름</th>
+                  <th>이메일</th>
+                  <th>전화번호</th>
+                  <th>유형</th>
+                  <th>상태</th>
+                  <th>가입일</th>
+                  <th>관리</th>
+                </tr>
+              </thead>
+              <tbody id="memberTableBody">
+                <tr><td colspan="8" class="loading">데이터를 불러오는 중...</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="pagination" id="pagination"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 회원 상세 모달 -->
+<div class="modal-overlay" id="memberModal">
+  <div class="modal">
+    <div class="modal__header">
+      <div class="modal__title">회원 상세 정보</div>
+      <button class="modal__close" id="modalClose">✕</button>
+    </div>
+    <div class="modal__body">
+      <div class="detail-grid" id="memberDetail">
+        <div class="loading">불러오는 중...</div>
+      </div>
+    </div>
+    <div class="modal__footer">
+      <select class="status-select" id="statusSelect">
+        <option value="active">활성</option>
+        <option value="suspended">이용 정지</option>
+        <option value="withdrawn">탈퇴 처리</option>
+      </select>
+      <button class="btn btn-primary" id="statusSaveBtn">상태 저장</button>
+      <button class="btn btn-danger" id="deleteMemberBtn">삭제</button>
+      <button class="btn btn-outline" id="modalCancelBtn">닫기</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast-container" id="toastContainer"></div>
+
+<script src="assets/js/admin-common.js"></script>
+<script src="assets/js/members.js"></script>
+</body>
+</html>

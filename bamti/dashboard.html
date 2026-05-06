@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>대시보드 - 배워볼LANG 관리자</title>
+  <link rel="stylesheet" href="assets/css/admin.css" />
+</head>
+<body>
+<div class="admin-layout">
+
+  <!-- 사이드바 -->
+  <aside class="sidebar">
+    <div class="sidebar__logo">
+      <span class="sidebar__logo-icon">🌳</span>
+      <div>
+        <div class="sidebar__logo-text">배워볼LANG</div>
+        <div class="sidebar__logo-sub">Admin Panel</div>
+      </div>
+    </div>
+    <nav class="sidebar__nav">
+      <div class="sidebar__section">메뉴</div>
+      <a href="dashboard.html" class="sidebar__item active">
+        <span class="sidebar__item-icon">📊</span> 대시보드
+      </a>
+      <a href="members.html" class="sidebar__item">
+        <span class="sidebar__item-icon">👥</span> 회원 관리
+      </a>
+      <a href="cs.html" class="sidebar__item">
+        <span class="sidebar__item-icon">💬</span> CS 관리
+      </a>
+    </nav>
+    <div class="sidebar__footer">
+      <strong id="sidebarAdminName">관리자</strong>
+      <span id="sidebarAdminRole">admin</span>
+    </div>
+  </aside>
+
+  <!-- 메인 -->
+  <div class="main-content">
+    <header class="admin-header">
+      <div class="admin-header__title">대시보드</div>
+      <div class="admin-header__right">
+        <span id="headerAdminName" style="font-size:13px;color:#4a5568;"></span>
+        <button class="btn-logout" id="logoutBtn">로그아웃</button>
+      </div>
+    </header>
+
+    <div class="page-content">
+
+      <!-- 회원 통계 -->
+      <h2 style="font-size:14px;font-weight:700;color:#718096;margin-bottom:12px;text-transform:uppercase;letter-spacing:.05em;">
+        회원 현황
+      </h2>
+      <div class="stat-grid" id="memberStats">
+        <div class="stat-card"><div class="stat-card__icon orange">👥</div><div><div class="stat-card__value" id="stat-total-m">-</div><div class="stat-card__label">전체 회원</div></div></div>
+        <div class="stat-card"><div class="stat-card__icon green">✅</div><div><div class="stat-card__value" id="stat-active">-</div><div class="stat-card__label">활성 회원</div></div></div>
+        <div class="stat-card"><div class="stat-card__icon blue">🆕</div><div><div class="stat-card__value" id="stat-new-week-m">-</div><div class="stat-card__label">최근 7일 신규</div></div></div>
+        <div class="stat-card"><div class="stat-card__icon yellow">⏸️</div><div><div class="stat-card__value" id="stat-suspended">-</div><div class="stat-card__label">이용 정지</div></div></div>
+        <div class="stat-card"><div class="stat-card__icon purple">🧒</div><div><div class="stat-card__value" id="stat-kids">-</div><div class="stat-card__label">어린이 회원</div></div></div>
+        <div class="stat-card"><div class="stat-card__icon blue">🧑</div><div><div class="stat-card__value" id="stat-adult">-</div><div class="stat-card__label">성인 회원</div></div></div>
+      </div>
+
+      <!-- CS 통계 -->
+      <h2 style="font-size:14px;font-weight:700;color:#718096;margin-bottom:12px;text-transform:uppercase;letter-spacing:.05em;margin-top:8px;">
+        CS 문의 현황
+      </h2>
+      <div class="stat-grid">
+        <div class="stat-card"><div class="stat-card__icon orange">📩</div><div><div class="stat-card__value" id="stat-total-cs">-</div><div class="stat-card__label">전체 문의</div></div></div>
+        <div class="stat-card"><div class="stat-card__icon yellow">⏳</div><div><div class="stat-card__value" id="stat-pending">-</div><div class="stat-card__label">대기 중</div></div></div>
+        <div class="stat-card"><div class="stat-card__icon blue">🔄</div><div><div class="stat-card__value" id="stat-inprogress">-</div><div class="stat-card__label">처리 중</div></div></div>
+        <div class="stat-card"><div class="stat-card__icon green">✔️</div><div><div class="stat-card__value" id="stat-resolved">-</div><div class="stat-card__label">해결 완료</div></div></div>
+        <div class="stat-card"><div class="stat-card__icon blue">🆕</div><div><div class="stat-card__value" id="stat-new-week-cs">-</div><div class="stat-card__label">최근 7일 접수</div></div></div>
+      </div>
+
+      <!-- 빠른 이동 -->
+      <div style="display:flex;gap:12px;margin-top:8px;">
+        <a href="members.html" class="btn btn-primary">👥 회원 관리 바로가기</a>
+        <a href="cs.html" class="btn btn-outline">💬 CS 관리 바로가기</a>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div class="toast-container" id="toastContainer"></div>
+
+<script src="assets/js/admin-common.js"></script>
+<script src="assets/js/dashboard.js"></script>
+</body>
+</html>

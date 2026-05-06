@@ -1,0 +1,837 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>회원가입 - 배워볼LANG</title>
+  <meta name="description" content="배워볼LANG 회원가입 페이지" />
+  <!-- robots: noindex 권고 (회원가입 페이지는 검색 노출 불필요) -->
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="stylesheet" href="../assets/css/common.css" />
+  <link rel="stylesheet" href="../assets/css/register.css" />
+</head>
+<body>
+
+<!-- ==============================
+     내비게이션
+     ============================== -->
+<nav class="navbar" id="mainNav" role="navigation" aria-label="주 내비게이션">
+  <div class="container navbar__inner">
+    <a href="../index.html" class="navbar__logo" aria-label="배워볼LANG 홈으로">
+      <span class="navbar__logo-icon" aria-hidden="true">🌳</span>
+      배워볼LANG
+    </a>
+    <div style="font-size:0.875rem; color:var(--color-text-medium);">
+      이미 회원이신가요?
+      <a href="login.html" style="color:var(--color-primary); font-weight:600;">로그인</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ==============================
+     회원가입 본문
+     ============================== -->
+<div class="register-page">
+  <div class="register-body">
+    <div class="register-card" role="main">
+
+      <!-- 카드 헤더 -->
+      <div class="register-card__header">
+        <div class="register-card__logo">🌳 배워볼LANG</div>
+        <h1 class="register-card__title">회원가입</h1>
+        <p class="register-card__subtitle">언어의 나무를 함께 키워가요</p>
+      </div>
+
+      <!-- 단계 표시기 -->
+      <div class="stepper" role="group" aria-label="회원가입 단계">
+        <ol class="stepper__list">
+          <li class="stepper__item active" id="step-indicator-1">
+            <div class="stepper__circle" aria-current="step">1</div>
+            <span class="stepper__label">회원 유형</span>
+          </li>
+          <li class="stepper__item" id="step-indicator-2">
+            <div class="stepper__circle">2</div>
+            <span class="stepper__label">기본 정보</span>
+          </li>
+          <li class="stepper__item" id="step-indicator-3">
+            <div class="stepper__circle">3</div>
+            <span class="stepper__label">약관 동의</span>
+          </li>
+          <li class="stepper__item" id="step-indicator-4">
+            <div class="stepper__circle">4</div>
+            <span class="stepper__label">가입 완료</span>
+          </li>
+        </ol>
+      </div>
+
+      <!-- 폼 바디 -->
+      <div class="register-form-body">
+        <form id="registerForm" novalidate>
+
+          <!-- ==============================
+               STEP 1: 회원 유형 선택
+               ============================== -->
+          <div class="step-panel active" id="step1" role="tabpanel" aria-labelledby="step-indicator-1">
+
+            <div class="form-section-title">수강 유형을 선택해주세요</div>
+
+            <!-- 개인정보 목적 안내 박스 -->
+            <div class="privacy-guide-box" role="note" aria-label="개인정보 수집 안내">
+              <div class="privacy-guide-box__title">
+                ℹ️ 개인정보 수집 목적 안내
+              </div>
+              <ul class="privacy-guide-box__list">
+                <li>수강 유형에 따라 수집하는 개인정보 항목이 달라질 수 있습니다.</li>
+                <li>만 14세 미만 어린이는 법정대리인(보호자)의 동의가 필요합니다.</li>
+                <li>수집된 개인정보는 서비스 제공 목적 외에 사용되지 않습니다.</li>
+              </ul>
+            </div>
+
+            <div class="member-type-grid" role="radiogroup" aria-label="회원 유형 선택">
+
+              <label class="member-type-card" id="typeKidsCard" for="typeKids">
+                <input type="radio" id="typeKids" name="memberType" value="kids" required
+                       aria-required="true" />
+                <div class="member-type-card__icon" aria-hidden="true">👧</div>
+                <div class="member-type-card__title">어린이 회원</div>
+                <p class="member-type-card__desc">
+                  만 3세 ~ 13세<br>
+                  <small>※ 만 14세 미만은 법정대리인(보호자) 동의 필요</small>
+                </p>
+              </label>
+
+              <label class="member-type-card" id="typeAdultCard" for="typeAdult">
+                <input type="radio" id="typeAdult" name="memberType" value="adult" required
+                       aria-required="true" />
+                <div class="member-type-card__icon" aria-hidden="true">🎓</div>
+                <div class="member-type-card__title">성인·청소년 회원</div>
+                <p class="member-type-card__desc">
+                  만 14세 이상<br>
+                  <small>자유롭게 회원가입이 가능합니다</small>
+                </p>
+              </label>
+
+            </div>
+
+            <div id="step1Error" class="form-error" role="alert"></div>
+
+            <div class="form-nav">
+              <button type="button" class="btn btn-primary" id="step1Next">
+                다음 단계 →
+              </button>
+            </div>
+          </div>
+
+          <!-- ==============================
+               STEP 2: 기본 정보 입력
+               ============================== -->
+          <div class="step-panel" id="step2" role="tabpanel" aria-labelledby="step-indicator-2">
+
+            <!-- 필수 입력 항목 -->
+            <div class="form-section-title">필수 입력 정보</div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label" for="userName">
+                  이름 <span class="required-mark" aria-label="필수">*</span>
+                </label>
+                <input
+                  type="text"
+                  id="userName"
+                  name="userName"
+                  class="form-input"
+                  placeholder="실명을 입력하세요"
+                  required
+                  aria-required="true"
+                  autocomplete="name"
+                  maxlength="30"
+                />
+                <div class="form-error" id="userNameError" role="alert"></div>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="userBirth">
+                  생년월일 <span class="required-mark" aria-label="필수">*</span>
+                  <small class="optional-mark">(연령 확인 목적)</small>
+                </label>
+                <input
+                  type="date"
+                  id="userBirth"
+                  name="userBirth"
+                  class="form-input"
+                  required
+                  aria-required="true"
+                  aria-describedby="birthHelp"
+                />
+                <div class="form-help" id="birthHelp">만 14세 미만은 법정대리인 동의가 필요합니다.</div>
+                <div class="form-error" id="userBirthError" role="alert"></div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="userEmail">
+                이메일 주소 <span class="required-mark" aria-label="필수">*</span>
+              </label>
+              <input
+                type="email"
+                id="userEmail"
+                name="userEmail"
+                class="form-input"
+                placeholder="example@email.com"
+                required
+                aria-required="true"
+                autocomplete="email"
+              />
+              <div class="form-help">로그인 아이디 및 중요 알림 수신에 사용됩니다.</div>
+              <div class="form-error" id="userEmailError" role="alert"></div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="userPhone">
+                휴대전화 번호 <span class="required-mark" aria-label="필수">*</span>
+              </label>
+              <input
+                type="tel"
+                id="userPhone"
+                name="userPhone"
+                class="form-input"
+                placeholder="010-0000-0000"
+                required
+                aria-required="true"
+                autocomplete="tel"
+                maxlength="13"
+              />
+              <div class="form-help">서비스 관련 중요 공지 및 인증에 사용됩니다.</div>
+              <div class="form-error" id="userPhoneError" role="alert"></div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label" for="userPassword">
+                  비밀번호 <span class="required-mark" aria-label="필수">*</span>
+                </label>
+                <input
+                  type="password"
+                  id="userPassword"
+                  name="userPassword"
+                  class="form-input"
+                  placeholder="비밀번호 입력"
+                  required
+                  aria-required="true"
+                  autocomplete="new-password"
+                  aria-describedby="passwordHelp"
+                />
+                <div class="form-help" id="passwordHelp">영문+숫자+특수문자 포함 8자 이상</div>
+                <div class="password-strength" id="passwordStrength" aria-live="polite">
+                  <div class="password-strength__bar">
+                    <div class="password-strength__fill" id="strengthFill"></div>
+                  </div>
+                  <div class="password-strength__text" id="strengthText"></div>
+                </div>
+                <div class="form-error" id="userPasswordError" role="alert"></div>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="userPasswordConfirm">
+                  비밀번호 확인 <span class="required-mark" aria-label="필수">*</span>
+                </label>
+                <input
+                  type="password"
+                  id="userPasswordConfirm"
+                  name="userPasswordConfirm"
+                  class="form-input"
+                  placeholder="비밀번호 재입력"
+                  required
+                  aria-required="true"
+                  autocomplete="new-password"
+                />
+                <div class="form-error" id="userPasswordConfirmError" role="alert"></div>
+              </div>
+            </div>
+
+            <!-- 선택 입력 항목 구분선 -->
+            <div class="consent-divider">선택 입력 정보 (입력하지 않아도 가입 가능)</div>
+            <div class="form-section-title">선택 입력 정보</div>
+
+            <div class="form-group">
+              <label class="form-label" for="userInterestLang">
+                관심 언어 <span class="optional-mark">(선택)</span>
+              </label>
+              <select id="userInterestLang" name="userInterestLang" class="form-input">
+                <option value="">선택 안 함</option>
+                <option value="english">🇺🇸 영어</option>
+                <option value="chinese">🇨🇳 중국어</option>
+                <option value="japanese">🇯🇵 일본어</option>
+                <option value="french">🇫🇷 프랑스어</option>
+              </select>
+              <div class="form-help">맞춤형 수업 추천에만 활용됩니다.</div>
+            </div>
+
+            <!-- ──────────────────────────────────────
+                 만 14세 미만 - 법정대리인 정보 (ISMS-P 필수)
+                 개인정보보호법 제22조 제6항
+                 ────────────────────────────────────── -->
+            <div class="minor-notice" id="minorNotice" role="alert">
+              <div class="minor-notice__title">
+                ⚠️ 만 14세 미만 어린이 회원 안내
+              </div>
+              <p class="minor-notice__text">
+                개인정보보호법 제22조 제6항에 따라 <strong>만 14세 미만의 어린이</strong>는
+                법정대리인(보호자)의 동의를 받아야 합니다.<br>
+                아래에 법정대리인(보호자) 정보를 입력해주세요.
+              </p>
+            </div>
+
+            <div class="guardian-section" id="guardianSection">
+              <div class="guardian-section__title">
+                👨‍👩‍👧 법정대리인(보호자) 정보 입력
+              </div>
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label class="form-label" for="guardianName">
+                    법정대리인 이름 <span class="required-mark" aria-label="필수">*</span>
+                  </label>
+                  <input
+                    type="text"
+                    id="guardianName"
+                    name="guardianName"
+                    class="form-input"
+                    placeholder="보호자 성함"
+                    autocomplete="name"
+                  />
+                  <div class="form-error" id="guardianNameError" role="alert"></div>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label" for="guardianRelation">
+                    관계 <span class="required-mark" aria-label="필수">*</span>
+                  </label>
+                  <select id="guardianRelation" name="guardianRelation" class="form-input">
+                    <option value="">선택하세요</option>
+                    <option value="parent_father">부(아버지)</option>
+                    <option value="parent_mother">모(어머니)</option>
+                    <option value="grandparent">조부모</option>
+                    <option value="legal_guardian">법정후견인</option>
+                    <option value="other">기타 법정대리인</option>
+                  </select>
+                  <div class="form-error" id="guardianRelationError" role="alert"></div>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="guardianPhone">
+                  법정대리인 휴대전화 번호 <span class="required-mark" aria-label="필수">*</span>
+                </label>
+                <input
+                  type="tel"
+                  id="guardianPhone"
+                  name="guardianPhone"
+                  class="form-input"
+                  placeholder="010-0000-0000"
+                  autocomplete="tel"
+                  maxlength="13"
+                />
+                <div class="form-help">법정대리인 동의 확인 SMS 발송에 사용됩니다.</div>
+                <div class="form-error" id="guardianPhoneError" role="alert"></div>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="guardianEmail">
+                  법정대리인 이메일 <span class="required-mark" aria-label="필수">*</span>
+                </label>
+                <input
+                  type="email"
+                  id="guardianEmail"
+                  name="guardianEmail"
+                  class="form-input"
+                  placeholder="보호자 이메일"
+                  autocomplete="email"
+                />
+                <div class="form-help">법정대리인 동의 확인 이메일 발송에 사용됩니다.</div>
+                <div class="form-error" id="guardianEmailError" role="alert"></div>
+              </div>
+            </div>
+
+            <div id="step2Error" class="form-error" role="alert"></div>
+
+            <div class="form-nav">
+              <button type="button" class="btn btn-outline" id="step2Prev">← 이전</button>
+              <button type="button" class="btn btn-primary" id="step2Next">다음 단계 →</button>
+            </div>
+          </div>
+
+          <!-- ==============================
+               STEP 3: 약관 동의 (ISMS-P 핵심)
+               개인정보보호법 및 ISMS-P 2.3 기준 준수
+               ============================== -->
+          <div class="step-panel" id="step3" role="tabpanel" aria-labelledby="step-indicator-3">
+
+            <div class="form-section-title">약관 및 개인정보 수집·이용 동의</div>
+
+            <!-- 개인정보 보호 안내 -->
+            <div class="privacy-guide-box" role="note">
+              <div class="privacy-guide-box__title">📋 개인정보 수집·이용 동의 안내</div>
+              <ul class="privacy-guide-box__list">
+                <li><strong>[필수]</strong> 항목에 동의하지 않으시면 서비스 이용이 제한됩니다.</li>
+                <li><strong>[선택]</strong> 항목은 동의하지 않아도 서비스 이용에 불이익이 없습니다.</li>
+                <li>각 항목의 <u>자세히 보기</u>를 클릭하면 수집 목적·항목·기간을 확인할 수 있습니다.</li>
+                <li>동의는 언제든지 철회하실 수 있습니다. (마이페이지 &gt; 개인정보 관리)</li>
+              </ul>
+            </div>
+
+            <!-- 전체 동의 -->
+            <div class="consent-all-wrapper">
+              <label class="consent-all-label" for="consentAll">
+                <div class="custom-checkbox large">
+                  <input
+                    type="checkbox"
+                    id="consentAll"
+                    aria-label="아래 모든 약관에 전체 동의"
+                  />
+                  <div class="custom-checkbox__visual" aria-hidden="true"></div>
+                </div>
+                <div>
+                  <div class="consent-text">전체 동의</div>
+                  <div class="consent-all-desc">
+                    필수 및 선택 항목을 포함한 모든 약관에 동의합니다.<br>
+                    선택 항목 동의 포함 시 더 많은 혜택을 받으실 수 있습니다.
+                  </div>
+                </div>
+              </label>
+            </div>
+
+            <!-- ─────────────────────
+                 그룹 1: 서비스 이용 약관
+                 ───────────────────── -->
+            <div class="consent-section">
+              <div class="consent-group">
+                <div class="consent-group-header">
+                  <span class="group-label">서비스 이용 약관</span>
+                </div>
+
+                <!-- 이용약관 [필수] -->
+                <div class="consent-item">
+                  <div class="consent-item__top">
+                    <div class="consent-item__checkbox-wrap">
+                      <div class="custom-checkbox">
+                        <input
+                          type="checkbox"
+                          id="consentTerms"
+                          name="consentTerms"
+                          required
+                          aria-required="true"
+                          aria-describedby="consentTermsDesc"
+                        />
+                        <div class="custom-checkbox__visual" aria-hidden="true"></div>
+                      </div>
+                    </div>
+                    <div class="consent-item__body">
+                      <div class="consent-item__label">
+                        <span class="badge badge-required" aria-label="필수">필수</span>
+                        배워볼LANG 서비스 이용약관 동의
+                        <button
+                          type="button"
+                          class="consent-item__toggle"
+                          data-target="detailTerms"
+                          aria-expanded="false"
+                          aria-controls="detailTerms"
+                        >자세히 보기 ▾</button>
+                      </div>
+                      <div class="consent-item__detail" id="detailTerms">
+                        <table class="consent-detail-table">
+                          <tr><th>약관명</th><td>배워볼LANG 서비스 이용약관</td></tr>
+                          <tr><th>내용</th><td>서비스 이용 자격, 이용자 의무, 금지 행위, 서비스 중단 및 변경 등 서비스 이용에 관한 전반적인 사항을 규정합니다.</td></tr>
+                          <tr><th>전문 보기</th><td><a href="terms.html" target="_blank" rel="noopener" style="color:var(--color-primary)">이용약관 전문 보기 →</a></td></tr>
+                        </table>
+                        <div class="consent-item__refuse-notice">
+                          <strong>※ 동의 거부 시 불이익:</strong> 이용약관에 동의하지 않으면 서비스 가입 및 이용이 불가합니다.
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+            <!-- ─────────────────────────────────────────
+                 그룹 2: 개인정보 수집·이용 동의 [필수]
+                 ISMS-P 2.3.1 개인정보 수집 제한 준수
+                 최소한의 정보만 수집 + 목적·항목·기간 명시
+                 ───────────────────────────────────────── -->
+            <div class="consent-section">
+              <div class="consent-group">
+                <div class="consent-group-header">
+                  <span class="group-label">개인정보 수집·이용 동의</span>
+                </div>
+
+                <!-- 서비스 제공 목적 [필수] -->
+                <div class="consent-item">
+                  <div class="consent-item__top">
+                    <div class="consent-item__checkbox-wrap">
+                      <div class="custom-checkbox">
+                        <input
+                          type="checkbox"
+                          id="consentPrivacyService"
+                          name="consentPrivacyService"
+                          required
+                          aria-required="true"
+                        />
+                        <div class="custom-checkbox__visual" aria-hidden="true"></div>
+                      </div>
+                    </div>
+                    <div class="consent-item__body">
+                      <div class="consent-item__label">
+                        <span class="badge badge-required" aria-label="필수">필수</span>
+                        개인정보 수집·이용 동의 (서비스 제공)
+                        <button
+                          type="button"
+                          class="consent-item__toggle"
+                          data-target="detailPrivacyService"
+                          aria-expanded="false"
+                          aria-controls="detailPrivacyService"
+                        >자세히 보기 ▾</button>
+                      </div>
+                      <div class="info-tags" aria-label="수집 항목">
+                        <span class="info-tag">이름</span>
+                        <span class="info-tag">이메일</span>
+                        <span class="info-tag">휴대전화번호</span>
+                        <span class="info-tag">생년월일</span>
+                        <span class="info-tag">비밀번호(암호화)</span>
+                      </div>
+                      <div class="consent-item__detail" id="detailPrivacyService">
+                        <table class="consent-detail-table">
+                          <tr><th>수집 목적</th><td>회원 식별·인증, 서비스 제공, 수강 관리, 고객 문의 처리, 이용 계약 이행</td></tr>
+                          <tr><th>수집 항목</th><td><strong>[필수]</strong> 이름, 이메일 주소, 휴대전화 번호, 생년월일, 비밀번호(일방향 암호화 저장)</td></tr>
+                          <tr><th>보유 기간</th><td>회원 탈퇴 후 즉시 삭제<br>단, 관련 법령에 따라 보존 필요 시 별도 보관<br>· 전자상거래 관련 기록: 5년 (전자상거래법 제6조)<br>· 소비자 불만·분쟁 처리 기록: 3년</td></tr>
+                          <tr><th>제3자 제공</th><td>원칙적으로 제3자에게 제공하지 않습니다.<br>단, 이용자 동의 또는 법령에 근거한 경우 예외</td></tr>
+                        </table>
+                        <div class="consent-item__refuse-notice">
+                          <strong>※ 동의 거부 시 불이익:</strong> 동의를 거부하실 수 있으나, 이 경우 배워볼LANG 서비스(회원가입, 수업 수강 등) 이용이 불가합니다.
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- 결제·환불 처리 [필수] -->
+                <div class="consent-item">
+                  <div class="consent-item__top">
+                    <div class="consent-item__checkbox-wrap">
+                      <div class="custom-checkbox">
+                        <input
+                          type="checkbox"
+                          id="consentPrivacyPayment"
+                          name="consentPrivacyPayment"
+                          required
+                          aria-required="true"
+                        />
+                        <div class="custom-checkbox__visual" aria-hidden="true"></div>
+                      </div>
+                    </div>
+                    <div class="consent-item__body">
+                      <div class="consent-item__label">
+                        <span class="badge badge-required" aria-label="필수">필수</span>
+                        개인정보 수집·이용 동의 (결제·환불 처리)
+                        <button
+                          type="button"
+                          class="consent-item__toggle"
+                          data-target="detailPrivacyPayment"
+                          aria-expanded="false"
+                          aria-controls="detailPrivacyPayment"
+                        >자세히 보기 ▾</button>
+                      </div>
+                      <div class="info-tags" aria-label="수집 항목">
+                        <span class="info-tag">결제수단 정보</span>
+                        <span class="info-tag">거래 내역</span>
+                      </div>
+                      <div class="consent-item__detail" id="detailPrivacyPayment">
+                        <table class="consent-detail-table">
+                          <tr><th>수집 목적</th><td>수강료 결제, 환불 처리, 영수증 발급, 이용 요금 청구</td></tr>
+                          <tr><th>수집 항목</th><td><strong>[필수]</strong> 결제수단 정보(카드사·카드번호 일부 마스킹 처리), 거래 일시·금액 내역</td></tr>
+                          <tr><th>보유 기간</th><td>대금 결제·환불 완료 후 5년<br>(전자상거래 등에서의 소비자보호에 관한 법률 제6조)</td></tr>
+                          <tr><th>제3자 제공</th><td>결제 처리 대행사(PG사)에 최소한의 정보 제공 (별도 동의 사항)</td></tr>
+                        </table>
+                        <div class="consent-item__refuse-notice">
+                          <strong>※ 동의 거부 시 불이익:</strong> 동의를 거부하실 수 있으나, 이 경우 유료 수강권 결제 및 환불 처리가 불가합니다.
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+            <!-- ─────────────────────────────────────────────
+                 그룹 3: 개인정보 제3자 제공 동의 [필수]
+                 ISMS-P 2.3.2: 목적 외 이용·제공 제한 준수
+                 ───────────────────────────────────────────── -->
+            <div class="consent-section">
+              <div class="consent-group">
+                <div class="consent-group-header">
+                  <span class="group-label">개인정보 제3자 제공 동의</span>
+                </div>
+
+                <div class="consent-item">
+                  <div class="consent-item__top">
+                    <div class="consent-item__checkbox-wrap">
+                      <div class="custom-checkbox">
+                        <input
+                          type="checkbox"
+                          id="consentThirdParty"
+                          name="consentThirdParty"
+                          required
+                          aria-required="true"
+                        />
+                        <div class="custom-checkbox__visual" aria-hidden="true"></div>
+                      </div>
+                    </div>
+                    <div class="consent-item__body">
+                      <div class="consent-item__label">
+                        <span class="badge badge-required" aria-label="필수">필수</span>
+                        개인정보 제3자 제공 동의 (결제 대행사)
+                        <button
+                          type="button"
+                          class="consent-item__toggle"
+                          data-target="detailThirdParty"
+                          aria-expanded="false"
+                          aria-controls="detailThirdParty"
+                        >자세히 보기 ▾</button>
+                      </div>
+                      <div class="consent-item__detail" id="detailThirdParty">
+                        <table class="consent-detail-table">
+                          <thead>
+                            <tr>
+                              <th>제공받는 자</th>
+                              <th>제공 목적</th>
+                              <th>제공 항목</th>
+                              <th>보유 기간</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td>나이스페이(주)<br><small>(결제 대행사)</small></td>
+                              <td>수강료 결제 처리</td>
+                              <td>이름, 결제수단 정보</td>
+                              <td>결제 완료 후 5년</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                        <div class="consent-item__refuse-notice">
+                          <strong>※ 동의 거부 시 불이익:</strong> 동의를 거부하실 수 있으나, 이 경우 유료 수강권 결제 서비스 이용이 불가합니다.
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+            <!-- ─────────────────────────────────────────────────────────
+                 그룹 4: 선택 동의 항목 (마케팅)
+                 ISMS-P: 필수와 선택 항목을 반드시 구분하여 별도 동의받아야 함
+                 개인정보보호법 제22조: 필수 동의와 선택 동의 분리 의무
+                 ───────────────────────────────────────────────────────── -->
+            <div class="consent-divider">아래 항목은 <strong>선택 동의</strong>입니다 (동의 거부 시 불이익 없음)</div>
+
+            <div class="consent-section">
+              <div class="consent-group">
+                <div class="consent-group-header">
+                  <span class="group-label">마케팅·광고 활용 동의 (선택)</span>
+                </div>
+
+                <!-- 선택: 마케팅 개인정보 수집 -->
+                <div class="consent-item">
+                  <div class="consent-item__top">
+                    <div class="consent-item__checkbox-wrap">
+                      <div class="custom-checkbox">
+                        <input
+                          type="checkbox"
+                          id="consentMarketing"
+                          name="consentMarketing"
+                        />
+                        <div class="custom-checkbox__visual" aria-hidden="true"></div>
+                      </div>
+                    </div>
+                    <div class="consent-item__body">
+                      <div class="consent-item__label">
+                        <span class="badge badge-optional" aria-label="선택">선택</span>
+                        개인정보 수집·이용 동의 (마케팅 목적)
+                        <button
+                          type="button"
+                          class="consent-item__toggle"
+                          data-target="detailMarketing"
+                          aria-expanded="false"
+                          aria-controls="detailMarketing"
+                        >자세히 보기 ▾</button>
+                      </div>
+                      <div class="info-tags" aria-label="수집 항목">
+                        <span class="info-tag">이름</span>
+                        <span class="info-tag">이메일</span>
+                        <span class="info-tag">휴대전화번호</span>
+                        <span class="info-tag">관심 언어</span>
+                        <span class="info-tag">서비스 이용 이력</span>
+                      </div>
+                      <div class="consent-item__detail" id="detailMarketing">
+                        <table class="consent-detail-table">
+                          <tr><th>수집 목적</th><td>이벤트·할인 쿠폰 안내, 신규 과정 출시 알림, 맞춤형 수업 추천, 학습 혜택 안내</td></tr>
+                          <tr><th>수집 항목</th><td><strong>[선택]</strong> 이름, 이메일, 휴대전화 번호, 관심 언어, 수강 이력</td></tr>
+                          <tr><th>보유 기간</th><td>동의 철회 시까지 (또는 회원 탈퇴 시)</td></tr>
+                        </table>
+                        <div class="consent-item__refuse-notice">
+                          <strong>※ 동의 거부 시 불이익:</strong> 동의하지 않아도 서비스 이용에 아무런 불이익이 없습니다. 다만 이벤트·할인 혜택 정보를 받을 수 없게 됩니다.
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- 선택: 광고성 정보 수신 (채널 선택) -->
+                <div class="consent-item">
+                  <div class="consent-item__top">
+                    <div class="consent-item__checkbox-wrap">
+                      <div class="custom-checkbox">
+                        <input
+                          type="checkbox"
+                          id="consentAdReceive"
+                          name="consentAdReceive"
+                        />
+                        <div class="custom-checkbox__visual" aria-hidden="true"></div>
+                      </div>
+                    </div>
+                    <div class="consent-item__body">
+                      <div class="consent-item__label">
+                        <span class="badge badge-optional" aria-label="선택">선택</span>
+                        광고성 정보 수신 동의 (이메일·SMS·푸시 알림)
+                        <button
+                          type="button"
+                          class="consent-item__toggle"
+                          data-target="detailAdReceive"
+                          aria-expanded="false"
+                          aria-controls="detailAdReceive"
+                        >자세히 보기 ▾</button>
+                      </div>
+                      <div class="consent-item__detail" id="detailAdReceive">
+                        <table class="consent-detail-table">
+                          <tr><th>수신 채널</th><td>이메일, SMS(문자), 앱 푸시 알림</td></tr>
+                          <tr><th>발송 내용</th><td>이벤트·프로모션, 신규 과정 출시, 학습 팁·뉴스레터</td></tr>
+                          <tr><th>발송 주체</th><td>(주)배워볼LANG</td></tr>
+                          <tr><th>동의 철회</th><td>마이페이지 &gt; 알림 설정에서 언제든지 수신 거부 가능</td></tr>
+                        </table>
+                        <div class="consent-item__refuse-notice">
+                          <strong>※ 동의 거부 시 불이익:</strong> 동의하지 않아도 서비스 이용에 아무런 불이익이 없습니다.
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+            <!-- 만 14세 미만: 법정대리인 동의 섹션 -->
+            <div class="consent-section" id="guardianConsentSection" style="display:none;">
+              <div class="consent-group">
+                <div class="consent-group-header">
+                  <span class="group-label">법정대리인(보호자) 동의 확인</span>
+                </div>
+                <div class="consent-item">
+                  <div class="consent-item__top">
+                    <div class="consent-item__checkbox-wrap">
+                      <div class="custom-checkbox">
+                        <input
+                          type="checkbox"
+                          id="consentGuardian"
+                          name="consentGuardian"
+                        />
+                        <div class="custom-checkbox__visual" aria-hidden="true"></div>
+                      </div>
+                    </div>
+                    <div class="consent-item__body">
+                      <div class="consent-item__label">
+                        <span class="badge badge-required" aria-label="필수">필수</span>
+                        법정대리인 동의 확인
+                        <button
+                          type="button"
+                          class="consent-item__toggle"
+                          data-target="detailGuardian"
+                          aria-expanded="false"
+                          aria-controls="detailGuardian"
+                        >자세히 보기 ▾</button>
+                      </div>
+                      <div class="consent-item__detail" id="detailGuardian">
+                        <table class="consent-detail-table">
+                          <tr><th>법적 근거</th><td>개인정보보호법 제22조 제6항<br>"만 14세 미만 아동의 개인정보 처리 시 법정대리인의 동의를 받아야 한다."</td></tr>
+                          <tr><th>동의 방법</th><td>입력하신 법정대리인 연락처로 인증 코드 발송 후 확인</td></tr>
+                          <tr><th>확인 내용</th><td>자녀의 배워볼LANG 서비스 가입 및 개인정보 수집·이용에 법정대리인이 동의함을 확인합니다.</td></tr>
+                        </table>
+                        <div class="consent-item__refuse-notice">
+                          <strong>※ 법정대리인 동의 없이는 만 14세 미만 아동의 회원가입이 처리되지 않습니다.</strong>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div id="step3Error" class="form-error" role="alert" style="margin-bottom:var(--spacing-md);"></div>
+
+            <div class="form-nav">
+              <button type="button" class="btn btn-outline" id="step3Prev">← 이전</button>
+              <button type="button" class="btn btn-primary" id="step3Next">가입 완료 →</button>
+            </div>
+          </div>
+
+          <!-- ==============================
+               STEP 4: 가입 완료
+               ============================== -->
+          <div class="step-panel" id="step4" role="tabpanel" aria-labelledby="step-indicator-4">
+            <div class="register-done">
+              <div class="register-done__icon" aria-hidden="true">🎉</div>
+              <h2 class="register-done__title">가입을 환영합니다!</h2>
+              <p class="register-done__desc">
+                <strong id="doneUserName"></strong>님,<br>
+                배워볼LANG 가입이 완료되었습니다.<br><br>
+                가입 시 동의하신 내용은 마이페이지에서 언제든지 확인하고 변경하실 수 있습니다.<br>
+                이제 배워볼LANG에서 언어의 나무를 키워가세요! 🌳
+              </p>
+              <a href="../index.html" class="btn btn-primary btn-lg">
+                홈으로 돌아가기
+              </a>
+            </div>
+          </div>
+
+        </form>
+      </div>
+      <!-- /register-form-body -->
+
+    </div>
+    <!-- /register-card -->
+  </div>
+</div>
+
+<!-- ==============================
+     푸터
+     ============================== -->
+<footer class="footer" role="contentinfo">
+  <div class="container">
+    <div class="footer__bottom" style="border-top:none; padding-top:0;">
+      <p class="footer__bottom-text">
+        © 2024 배워볼LANG. All rights reserved. | 대표이사: 홍길동 | 사업자등록번호: 123-45-67890
+      </p>
+      <div class="footer__bottom-links">
+        <a href="terms.html">이용약관</a>
+        <a href="privacy-policy.html"><strong>개인정보처리방침</strong></a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="../assets/js/common.js"></script>
+<script src="../assets/js/register.js"></script>
+</body>
+</html>

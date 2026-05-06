@@ -1,0 +1,16 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(powershell.exe -Command \"Get-ChildItem ''C:\\\\Users\\\\KISIA\\\\AppData\\\\Roaming\\\\npm'' -ErrorAction SilentlyContinue; Get-ChildItem ''C:\\\\Program Files\\\\nodejs'' -ErrorAction SilentlyContinue; Test-Path ''C:\\\\Program Files\\\\nodejs\\\\npm.cmd''\")",
+      "Bash(powershell.exe -Command \"Get-ChildItem ''C:\\\\'' -Directory | Select-Object Name; Get-ChildItem ''C:\\\\Program Files'' -Directory | Select-String -Pattern ''node|npm'' -SimpleMatch\")",
+      "Bash(powershell.exe -Command \"Get-ChildItem ''C:\\\\Program Files'' -Directory | Where-Object { $_.Name -match ''node|npm|nvm'' }\")",
+      "Bash(cmd.exe /c \"where node && where npm\")",
+      "Bash(cmd.exe /c \"node --version && npm --version\")",
+      "Bash(cmd.exe /c \"where node 2>&1 & where npm 2>&1\")",
+      "Bash(ls:*)",
+      "Read(//c/Program Files \\(x86\\)/**)",
+      "Bash(wsl psql:*)",
+      "Bash(wsl pg_isready:*)"
+    ]
+  }
+}
